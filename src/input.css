@@ -7,3 +7,9 @@
       font-family: 'Lora', serif;
     }
 }
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+}
