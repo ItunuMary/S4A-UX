@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-gray-100">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/dist/output.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .link-underline {
+        border-bottom-width: 0;
+        background-image: linear-gradient(transparent, transparent),
+          linear-gradient(#fff, #fff);
+        background-size: 0 3px;
+        background-position: 0 100%;
+        background-repeat: no-repeat;
+        transition: background-size 0.5s ease-in-out;
+      }
+
+      .link-underline-black {
+        background-image: linear-gradient(transparent, transparent),
+          linear-gradient(rgb(249, 115, 22), rgb(161, 98, 7));
+      }
+
+      .link-underline:hover {
+        background-size: 100% 3px;
+        background-position: 0 100%;
+      }
+    </style>
+    <script
+      defer
+      src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+  </head>
+  <body class="h-full">
+    <div class="h-full">
+      <header class="bg-white shadow">
+        <div class="relative h-12 flex justify-center w-full bg-gray-700">
+          <div class="relative z-10 px-2 flex lg:px-0">
+            <div class="flex-shrink-0 flex items-center space-x-4 pt-2">
+              <h1 class="font-medium text-xl flex justify-center text-white">
+                ENGLISH TEST 2
+              </h1>
+              <span class="text-base text-gray-200 flex justify-end"
+                >Section 2: ( Synonyms )</span
+              >
+            </div>
+          </div>
+        </div>
+        <div
+          class="max-w-7xl mx-auto px-2 sm:px-4 lg:divide-y lg:divide-gray-200 lg:px-8"
+        >
+          <div class="relative h-16 flex justify-between">
+            <div class="flex justify-start my-auto">
+              <fieldset>
+                <legend class="sr-only">Notifications</legend>
+                <div class="relative flex items-start">
+                  <div class="flex items-center h-5">
+                    <input
+                      id="comments"
+                      aria-describedby="comments-description"
+                      name="comments"
+                      type="checkbox"
+                      checked
+                      class="focus:ring-orange-500 h-4 w-4 text-orange-600 border-gray-300 rounded"
+                    />
+                  </div>
+                  <div class="ml-3 text-sm">
+                    <label for="comments" class="font-medium text-gray-700"
+                      >Mark for review</label
+                    >
+                    <span id="comments-description" class="text-gray-500"
+                      ><span class="sr-only">New comments </span> you can answer
+                      this question later.</span
+                    >
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <div
+              class="relative z-0 flex-1 px-2 flex items-center justify-center sm:absolute sm:inset-0"
+            >
+              <div class="flex max-w-xs w-full justify-center space-x-2">
+                <label for="Timer" class="sr-only">Timer</label>
+                <img src="/dist/images/timer2.svg" height="20px" width="20px" />
+                <span class="font-medium"
+                  >Time Left:
+                  <span class="text-red-500">0 : 03 : 23</span></span
+                >
+              </div>
+            </div>
+            <div
+              x-data="{ open2: false }"
+              class="relative z-10 flex items-center lg:hidden"
+            >
+              <!-- Mobile menu button -->
+              <button
+                @click="open2= !open2"
+                type="button"
+                class="rounded-md p-2 inline-flex items-center justify-center hover:shadow-lg"
+                aria-controls="mobile-menu"
+                aria-expanded="false"
+              >
+                <!--
+              Icon when menu is closed.
+
+              Heroicon name: outline/menu
+
+              Menu open: "hidden", Menu closed: "block"
+            -->
+                <span class="sr-only">Open Instructions</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6 text-orange-500"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+                <!-- <svg
+                  class="block h-6 w-6"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg> -->
+                <!--
+              Icon when menu is open.
+
+              Heroicon name: outline/x
+
+              Menu open: "block", Menu closed: "hidden"
+            -->
+                <!-- <svg
+                  class="hidden h-6 w-6"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg> -->
+              </button>
+            </div>
+            <div
+              class="hidden lg:relative lg:z-10 lg:ml-4 lg:flex lg:items-center"
+            >
+              <!-- Profile dropdown -->
+              <div x-data="{ open: false}" class="flex-shrink-0 relative ml-4">
+                <div>
+                  <a
+                    href="/src/taeinst.html"
+                    @click="open= !open"
+                    type="button"
+                    class="bg-white rounded-full flex space-x-2"
+                    id="user-menu-button"
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                  >
+                    <span class="sr-only">Check Instructions</span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-6 w-6 text-orange-500"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                    <a href="/src/taeinst.html">
+                      <span
+                        class="text-orange-500 link link-underline link-underline-black"
+                        >Instructions</span
+                      >
+                    </a>
+                  </a>
+                </div>
+                <!--
+                    Dropdown menu, show/hide based on menu state.
+
+                    Entering: "transition ease-out duration-100"
+                        From: "transform opacity-0 scale-95"
+                        To: "transform opacity-100 scale-100"
+                    Leaving: "transition ease-in duration-75"
+                        From: "transform opacity-100 scale-100"
+                        To: "transform opacity-0 scale-95"
+                    -->
+                <div
+                  x-show="open"
+                  class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 py-1 focus:outline-none"
+                  role="menu"
+                  aria-orientation="vertical"
+                  aria-labelledby="user-menu-button"
+                  tabindex="-1"
+                >
+                  <!-- Active: "bg-gray-100", Not Active: "" -->
+                  <a
+                    href="#"
+                    class="block py-2 px-4 text-sm text-gray-700"
+                    role="menuitem"
+                    tabindex="-1"
+                    id="user-menu-item-0"
+                    >Your Profile</a
+                  >
+
+                  <a
+                    href="#"
+                    class="block py-2 px-4 text-sm text-gray-700"
+                    role="menuitem"
+                    tabindex="-1"
+                    id="user-menu-item-1"
+                    >Settings</a
+                  >
+
+                  <a
+                    href="#"
+                    class="block py-2 px-4 text-sm text-gray-700"
+                    role="menuitem"
+                    tabindex="-1"
+                    id="user-menu-item-2"
+                    >Sign out</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <nav class="hidden lg:py-2 lg:flex lg:space-x-8" aria-label="Global">
+            <a
+              href="#"
+              class="rounded-md py-2 px-3 inline-flex items-center text-sm font-medium text-gray-900 hover:bg-gray-50 hover:text-gray-900"
+            >
+              Dashboard
+            </a>
+
+            <a
+              href="#"
+              class="rounded-md py-2 px-3 inline-flex items-center text-sm font-medium text-gray-900 hover:bg-gray-50 hover:text-gray-900"
+            >
+              Jobs
+            </a>
+
+            <a
+              href="#"
+              class="rounded-md py-2 px-3 inline-flex items-center text-sm font-medium text-gray-900 hover:bg-gray-50 hover:text-gray-900"
+            >
+              Applicants
+            </a>
+
+            <a
+              href="#"
+              class="rounded-md py-2 px-3 inline-flex items-center text-sm font-medium text-gray-900 hover:bg-gray-50 hover:text-gray-900"
+            >
+              Company
+            </a>
+          </nav> -->
+        </div>
+
+        <!-- Mobile menu, show/hide based on menu state. -->
+        <nav
+          x-show="open2"
+          class="lg:hidden"
+          aria-label="Global"
+          id="mobile-menu"
+        >
+          <!-- <div class="pt-2 pb-3 px-2 space-y-1">
+            <a
+              href="#"
+              class="block rounded-md py-2 px-3 text-base font-medium text-gray-900 hover:bg-gray-50 hover:text-gray-900"
+              >Dashboard</a
+            >
+
+            <a
+              href="#"
+              class="block rounded-md py-2 px-3 text-base font-medium text-gray-900 hover:bg-gray-50 hover:text-gray-900"
+              >Jobs</a
+            >
+
+            <a
+              href="#"
+              class="block rounded-md py-2 px-3 text-base font-medium text-gray-900 hover:bg-gray-50 hover:text-gray-900"
+              >Applicants</a
+            >
+
+            <a
+              href="#"
+              class="block rounded-md py-2 px-3 text-base font-medium text-gray-900 hover:bg-gray-50 hover:text-gray-900"
+              >Company</a
+            >
+          </div> -->
+          <div class="border-t border-gray-200 pt-4 pb-3">
+            <div class="px-4 flex items-center">
+              <div class="flex-shrink-0">
+                <img
+                  class="h-10 w-10 rounded-full"
+                  src="https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=80"
+                  alt=""
+                />
+              </div>
+              <div class="ml-3">
+                <div class="text-base font-medium text-gray-800">
+                  Lisa Marie
+                </div>
+                <div class="text-sm font-medium text-gray-500">
+                  lisamarie@example.com
+                </div>
+              </div>
+              <button
+                type="button"
+                class="ml-auto flex-shrink-0 bg-white rounded-full p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
+              >
+                <span class="sr-only">View notifications</span>
+                <!-- Heroicon name: outline/bell -->
+                <svg
+                  class="h-6 w-6"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div class="mt-3 px-2 space-y-1">
+              <a
+                href="#"
+                class="block rounded-md py-2 px-3 text-base font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-900"
+                >Your Profile</a
+              >
+
+              <a
+                href="#"
+                class="block rounded-md py-2 px-3 text-base font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-900"
+                >Settings</a
+              >
+
+              <a
+                href="#"
+                class="block rounded-md py-2 px-3 text-base font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-900"
+                >Sign out</a
+              >
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      <main class="h-fit w-full -mt-8 pb-10 lg:py-12 lg:px-8 gap-x-0">
+        <div class="lg:grid lg:grid-cols-12">
+          <!-- Passage -->
+          <div
+            class="space-y-4 sm:px-6 lg:px-0 w-full lg:col-span-5 shadow rounded-l-md bg-white"
+          >
+            <div class="pt-2 rounded-tr-md">
+              <div class="p-3 shadow-sm sm:px-6">
+                <h2
+                  id="instruction-heading"
+                  class="text-base leading-6 font-semibold text-gray-900"
+                >
+                  Comprehenion Passage
+                </h2>
+              </div>
+              <div class="">
+                <p class="h-80 overflow-auto px-6 py-3 text-sm text-gray-500">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Maxime mollitia, molestiae quas vel sint commodi repudiandae
+                  consequuntur voluptatum laborum numquam blanditiis harum
+                  quisquam eius sed odit fugiat iusto fuga praesentium optio,
+                  eaque rerum! Provident similique accusantium nemo autem.
+                  Veritatis obcaecati tenetur iure eius earum ut molestias
+                  architecto voluptate aliquam nihil, eveniet aliquid culpa
+                  officia aut! Impedit sit sunt quaerat, odit, tenetur error,
+                  harum nesciunt ipsum debitis quas aliquid. Reprehenderit,
+                  quia. Quo neque error repudiandae fuga? Ipsa laudantium
+                  molestias eos sapiente officiis modi at sunt excepturi
+                  expedita sint? Sed quibusdam recusandae alias error harum
+                  maxime adipisci amet laborum. Perspiciatis minima nesciunt
+                  dolorem! Officiis iure rerum voluptates a cumque velit
+                  quibusdam sed amet tempora. Sit laborum ab, eius fugit
+                  doloribus tenetur fugiat, temporibus enim commodi iusto libero
+                  magni deleniti quod quam consequuntur! Commodi minima
+                  excepturi repudiandae velit hic maxime doloremque. Quaerat
+                  provident commodi consectetur veniam similique ad earum omnis
+                  ipsum saepe, voluptas, hic voluptates pariatur est explicabo
+                  fugiat, dolorum eligendi quam cupiditate excepturi mollitia
+                  maiores labore suscipit quas? Nulla, placeat. Voluptatem
+                  quaerat non architecto ab laudantium modi minima sunt esse
+                  temporibus sint culpa, recusandae aliquam numquam totam
+                  ratione voluptas quod exercitationem fuga. Possimus quis earum
+                  veniam quasi aliquam eligendi, placeat qui corporis! Lorem
+                  ipsum dolor sit amet consectetur adipisicing elit. Maxime
+                  mollitia, molestiae quas vel sint commodi repudiandae
+                  consequuntur voluptatum laborum numquam blanditiis harum
+                  quisquam eius sed odit fugiat iusto fuga praesentium optio,
+                  eaque rerum! Provident similique accusantium nemo autem.
+                  Veritatis obcaecati tenetur iure eius earum ut molestias
+                  architecto voluptate aliquam nihil, eveniet aliquid culpa
+                  officia aut! Impedit sit sunt quaerat, odit, tenetur error,
+                  harum nesciunt ipsum debitis quas aliquid. Reprehenderit,
+                  quia. Quo neque error repudiandae fuga? Ipsa laudantium
+                  molestias eos sapiente officiis modi at sunt excepturi
+                  expedita sint? Sed quibusdam recusandae alias error harum
+                  maxime adipisci amet laborum. Perspiciatis minima nesciunt
+                  dolorem! Officiis iure rerum voluptates a cumque velit
+                  quibusdam sed amet tempora. Sit laborum ab, eius fugit
+                  doloribus tenetur fugiat, temporibus enim commodi iusto libero
+                  magni deleniti quod quam consequuntur! Commodi minima
+                  excepturi repudiandae velit hic maxime doloremque. Quaerat
+                  provident commodi consectetur veniam similique ad earum omnis
+                  ipsum saepe, voluptas, hic voluptates pariatur est explicabo
+                  fugiat, dolorum eligendi quam cupiditate excepturi mollitia
+                  maiores labore suscipit quas? Nulla, placeat. Voluptatem
+                  quaerat non architecto ab laudantium modi minima sunt esse
+                  temporibus sint culpa, recusandae aliquam numquam totam
+                  ratione voluptas quod exercitationem fuga. Possimus quis earum
+                  veniam quasi aliquam eligendi, placeat qui corporis! Lorem
+                  ipsum dolor sit amet consectetur adipisicing elit. Maxime
+                  mollitia, molestiae quas vel sint commodi repudiandae
+                  consequuntur voluptatum laborum numquam blanditiis harum
+                  quisquam eius sed odit fugiat iusto fuga praesentium optio,
+                  eaque rerum! Provident similique accusantium nemo autem.
+                  Veritatis obcaecati tenetur iure eius earum ut molestias
+                  architecto voluptate aliquam nihil, eveniet aliquid culpa
+                  officia aut! Impedit sit sunt quaerat, odit, tenetur error,
+                  harum nesciunt ipsum debitis quas aliquid. Reprehenderit,
+                  quia. Quo neque error repudiandae fuga? Ipsa laudantium
+                  molestias eos sapiente officiis modi at sunt excepturi
+                  expedita sint? Sed quibusdam recusandae alias error harum
+                  maxime adipisci amet laborum. Perspiciatis minima nesciunt
+                  dolorem! Officiis iure rerum voluptates a cumque velit
+                  quibusdam sed amet tempora. Sit laborum ab, eius fugit
+                  doloribus tenetur fugiat, temporibus enim commodi iusto libero
+                  magni deleniti quod quam consequuntur! Commodi minima
+                  excepturi repudiandae velit hic maxime doloremque. Quaerat
+                  provident commodi consectetur veniam similique ad earum omnis
+                  ipsum saepe, voluptas, hic voluptates pariatur est explicabo
+                  fugiat, dolorum eligendi quam cupiditate excepturi mollitia
+                  maiores labore suscipit quas? Nulla, placeat. Voluptatem
+                  quaerat non architecto ab laudantium modi minima sunt esse
+                  temporibus sint culpa, recusandae aliquam numquam totam
+                  ratione voluptas quod exercitationem fuga. Possimus quis earum
+                  veniam quasi aliquam eligendi, placeat qui corporis!
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Questions and Instructions -->
+          <div class="space-y-4 sm:px-6 lg:px-0 w-full lg:col-span-7">
+            <section aria-labelledby="payment-details-heading">
+              <!-- Instructions -->
+              <div
+                class="bg-slate-50 pt-2 shadow rounded-tr-md sm:overflow-hidden"
+              >
+                <div class="px-2 sm:px-6">
+                  <h2 id="instruction-heading" class="text-base leading-6">
+                    <span class="text-gray-800 font-medium"
+                      >Answer all Questions</span
+                    >
+                  </h2>
+                  <p class="mt-3 mb-2 text-sm text-gray-500">
+                    Choose the word that is
+                    <span class="font-semibold">nearest in meaning</span>
+                  </p>
+                </div>
+              </div>
+
+              <!-- Questions -->
+              <div class="shadow rounded-br-md sm:overflow-hidden">
+                <div class="bg-white py-6 px-4 sm:p-6">
+                  <div>
+                    <div class="flex items-center justify-between w-full">
+                      <p
+                        id="payment-details-heading"
+                        class="text-base leading-6 text-gray-900"
+                      >
+                        Question <b>1</b> of <b>8</b>
+                      </p>
+                      <div class="flex items-center justify-end space-x-2">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="h-6 w-6 text-gray-500 shadow hover:shadow-lg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          stroke-width="2"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M18 12H6"
+                          />
+                        </svg>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="h-6 w-6 text-gray-500"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          stroke-width="2"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                          />
+                        </svg>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="h-6 w-6 text-gray-500 shadow hover:shadow-lg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          stroke-width="2"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                    <p class="mt-4 text-base text-gray-900">
+                      Can we meet in <b>two weeks</b> time?
+                    </p>
+                  </div>
+
+                  <div class="mt-6 grid grid-cols-4 gap-6">
+                    <fieldset>
+                      <legend class="sr-only">Plan</legend>
+                      <div class="space-y-5 whitespace-nowrap">
+                        <div class="relative flex items-start">
+                          <div class="flex items-center h-5">
+                            <input
+                              id="fortnight"
+                              aria-describedby="fortnight-description"
+                              name="plan"
+                              type="radio"
+                              checked
+                              class="focus:ring-orange-500 h-4 w-4 text-orange-600 border-gray-300"
+                            />
+                          </div>
+                          <div class="ml-3 text-sm">
+                            <label for="fortnight" class="text-sm text-gray-700"
+                              >Fortnight</label
+                            >
+                          </div>
+                        </div>
+
+                        <div class="relative flex items-start">
+                          <div class="flex items-center h-5">
+                            <input
+                              id="fortnite"
+                              aria-describedby="fortnite-description"
+                              name="plan"
+                              type="radio"
+                              class="focus:ring-orange-500 h-4 w-4 text-orange-600 border-gray-300"
+                            />
+                          </div>
+                          <div class="ml-3 text-sm">
+                            <label for="fortnite" class="text-sm text-gray-700"
+                              >Fortnite</label
+                            >
+                          </div>
+                        </div>
+
+                        <div class="relative flex items-start">
+                          <div class="flex items-center h-5">
+                            <input
+                              id="fortnite"
+                              aria-describedby="fortnite-description"
+                              name="plan"
+                              type="radio"
+                              class="focus:ring-orange-500 h-4 w-4 text-orange-600 border-gray-300"
+                            />
+                          </div>
+                          <div class="ml-3 text-sm">
+                            <label for="fortnite" class="text-sm text-gray-700"
+                              >Fortknight</label
+                            >
+                          </div>
+                        </div>
+
+                        <div class="relative flex items-start">
+                          <div class="flex items-center h-5">
+                            <input
+                              id="upper-week"
+                              aria-describedby="upper-week-description"
+                              name="plan"
+                              type="radio"
+                              class="focus:ring-orange-500 h-4 w-4 text-orange-600 border-gray-300"
+                            />
+                          </div>
+                          <div class="ml-3 text-sm">
+                            <label
+                              for="upper-week"
+                              class="text-sm text-gray-700"
+                              >Upper Week</label
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </fieldset>
+                  </div>
+                </div>
+                <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                  <div class="flex items-center justify-between space-x-2">
+                    <a
+                      href="tae.html"
+                      class="p-2 border rounded-full text-white bg-gray-700 hover:text-black hover:bg-white"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-6 w-6 shadow-sm"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M15 19l-7-7 7-7"
+                        />
+                      </svg>
+                    </a>
+                    <div class="space-x-4">
+                      <button
+                        class="border rounded-md bg-white py-2 px-3 hover:text-white shadow-md hover:bg-gray-500"
+                      >
+                        Review
+                      </button>
+                      <button
+                        class="border rounded-md bg-white py-2 px-3 hover:text-white shadow-md hover:bg-gray-500"
+                      >
+                        Show Answer
+                      </button>
+                      <button
+                        class="border text-green-500 rounded-md bg-white py-2 px-3 hover:text-white shadow-md hover:bg-green-500"
+                      >
+                        Submit
+                      </button>
+                    </div>
+                    <a
+                      href="tae2.html"
+                      class="p-2 border rounded-full text-white bg-gray-700 hover:text-black hover:bg-white"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-6 w-6 shadow-sm"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <!-- Review -->
+        <div>
+          <section aria-labelledby="instruction-heading">
+            <div
+              class="bg-white mt-5 pt-2 shadow sm:rounded-md sm:overflow-hidden"
+            >
+              <div class="p-4 sm:px-6">
+                <div class="flex items-center justify-center space-x-4 mb-4">
+                  <div class="flex items-center space-x-1">
+                    <div
+                      class="border rounded-full h-6 w-6 text-center bg-green-200"
+                    ></div>
+                    <span>Answered</span>
+                  </div>
+                  <div class="flex items-center space-x-1">
+                    <div
+                      class="border rounded-full h-6 w-6 text-center bg-red-200"
+                    ></div>
+                    <span>Current</span>
+                  </div>
+                  <div class="flex items-center space-x-1">
+                    <div
+                      class="border rounded-full h-6 w-6 text-center bg-gray-200"
+                    ></div>
+                    <span>Unanswered</span>
+                  </div>
+                </div>
+                <div class="grid grid-cols-12 gap-4">
+                  <div
+                    class="border rounded-md px-2 py-2 text-center bg-green-200"
+                  >
+                    1 : A
+                  </div>
+                  <div
+                    class="border rounded-md px-2 py-2 text-center bg-red-200"
+                  >
+                    2 : A
+                  </div>
+                  <div
+                    class="border rounded-md px-2 py-2 text-center bg-gray-200"
+                  >
+                    3 : A
+                  </div>
+                  <div
+                    class="border rounded-md px-2 py-2 text-center bg-gray-200"
+                  >
+                    4 : A
+                  </div>
+                  <div
+                    class="border rounded-md px-2 py-2 text-center bg-gray-200"
+                  >
+                    5 : A
+                  </div>
+                  <div
+                    class="border rounded-md px-2 py-2 text-center bg-gray-200"
+                  >
+                    6 : A
+                  </div>
+                  <div
+                    class="border rounded-md px-2 py-2 text-center bg-gray-200"
+                  >
+                    7 : A
+                  </div>
+                  <div
+                    class="border rounded-md px-2 py-2 text-center bg-gray-200"
+                  >
+                    8 : A
+                  </div>
+                  <div
+                    class="border rounded-md px-2 py-2 text-center bg-gray-200"
+                  >
+                    9 : A
+                  </div>
+                  <div
+                    class="border rounded-md px-2 py-2 text-center bg-gray-200"
+                  >
+                    10 : A
+                  </div>
+                  <div
+                    class="border rounded-md px-2 py-2 text-center bg-gray-200"
+                  >
+                    11 : A
+                  </div>
+                  <div
+                    class="border rounded-md px-2 py-2 text-center bg-gray-200"
+                  >
+                    12 : A
+                  </div>
+                  <div
+                    class="border rounded-md px-2 py-2 text-center bg-gray-200"
+                  >
+                    13 : A
+                  </div>
+                  <div
+                    class="border rounded-md px-2 py-2 text-center bg-gray-200"
+                  >
+                    14 : A
+                  </div>
+                  <div
+                    class="border rounded-md px-2 py-2 text-center bg-gray-200"
+                  >
+                    15 : A
+                  </div>
+                  <div
+                    class="border rounded-md px-2 py-2 text-center bg-gray-200"
+                  >
+                    16 : A
+                  </div>
+                  <div
+                    class="border rounded-md px-2 py-2 text-center bg-gray-200"
+                  >
+                    17 : A
+                  </div>
+                  <div
+                    class="border rounded-md px-2 py-2 text-center bg-gray-200"
+                  >
+                    18 : A
+                  </div>
+                  <div
+                    class="border rounded-md px-2 py-2 text-center bg-gray-200"
+                  >
+                    19 : B
+                  </div>
+                  <div
+                    class="border rounded-md px-2 py-2 text-center bg-gray-200"
+                  >
+                    20 : B
+                  </div>
+                  <div
+                    class="border rounded-md px-2 py-2 text-center bg-gray-200"
+                  >
+                    21 : B
+                  </div>
+                  <div
+                    class="border rounded-md px-2 py-2 text-center bg-gray-200"
+                  >
+                    22 : B
+                  </div>
+                  <div
+                    class="border rounded-md px-2 py-2 text-center bg-gray-200"
+                  >
+                    23 : B
+                  </div>
+                  <div
+                    class="border rounded-md px-2 py-2 text-center bg-gray-200"
+                  >
+                    24 : B
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+    <div
+      class="relative z-10"
+      aria-labelledby="modal-title"
+      role="dialog"
+      aria-modal="true"
+    >
+      <!--
+          Background backdrop, show/hide based on modal state.
+      
+          Entering: "ease-out duration-300"
+            From: "opacity-0"
+            To: "opacity-100"
+          Leaving: "ease-in duration-200"
+            From: "opacity-100"
+            To: "opacity-0"
+        -->
+      <div
+        class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+      ></div>
+
+      <div class="fixed z-10 inset-0 overflow-y-auto">
+        <div
+          class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
+        >
+          <!-- This element is to trick the browser into centering the modal contents. -->
+          <span
+            class="hidden sm:inline-block sm:align-middle sm:h-screen"
+            aria-hidden="true"
+            >&#8203;</span
+          >
+
+          <!--
+              Modal panel, show/hide based on modal state.
+      
+              Entering: "ease-out duration-300"
+                From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                To: "opacity-100 translate-y-0 sm:scale-100"
+              Leaving: "ease-in duration-200"
+                From: "opacity-100 translate-y-0 sm:scale-100"
+                To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            -->
+          <div
+            class="relative inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+          >
+            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+              <div class="sm:flex sm:items-start">
+                <div
+                  class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10"
+                >
+                  <!-- Heroicon name: outline/exclamation -->
+                  <svg
+                    class="h-6 w-6 text-red-600"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                    />
+                  </svg>
+                </div>
+                <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                  <h3 class="text-lg font-medium" id="modal-title">
+                    Do you want to submit current exam session?
+                  </h3>
+                  <div class="mt-2">
+                    <p class="text-sm">You will be able to continue later</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse"
+            >
+              <button
+                type="button"
+                class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
+              >
+                Yes
+              </button>
+              <button
+                type="button"
+                class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium focus:outline-none focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+              >
+                No
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

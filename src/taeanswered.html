@@ -74,7 +74,7 @@
                       >Mark for review</label
                     >
                     <span id="comments-description" class="xl:inline-flex lg:inline-flex text-gray-500 sm:hidden"
-                      ><span class="sr-only"> extra </span> you can
+                      ><span class="sr-only">New comments </span> you can
                       answer this question later.</span
                     >
                   </div>
@@ -318,8 +318,7 @@
 
       <main class="w-full -mt-8 sm:p-auto sm:mt-4 xl:-mt-8 pb-10 lg:py-12 lg:px-8">
         <div class="lg:grid lg:grid-cols-12">
-        
-
+          
           <!-- Questions and Instructions -->
           <div class="space-y-4 sm:px-6 lg:px-0 w-full lg:col-span-6">
             <section aria-labelledby="payment-details-heading">
@@ -376,25 +375,27 @@
                     <fieldset>
                       <legend class="sr-only">Plan</legend>
                       <div class="space-y-5 whitespace-nowrap">
-                        <div class="relative flex items-start">
+                        <div class="relative flex items-start p-3 bg-green-100">
                           <div class="flex items-center h-5">
                             <input
                               id="fortnight"
                               aria-describedby="fortnight-description"
                               name="plan"
                               type="radio"
-                              checked
-                              class="focus:ring-orange-500 h-4 w-4 text-orange-600 border-gray-300"
+                              class="focus:ring-orange-500 h-4 w-4 text-orange-600 border-gray-300 "
                             />
                           </div>
-                          <div class="ml-3 text-sm">
+                          <div class="flex items-center space-x-2 ml-3 text-sm w-96">
                             <label for="fortnight" class="text-sm text-gray-700"
                               >Fortnight</label
                             >
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
                           </div>
                         </div>
 
-                        <div class="relative flex items-start">
+                        <div class="relative flex items-start p-3">
                           <div class="flex items-center h-5">
                             <input
                               id="fortnite"
@@ -411,7 +412,7 @@
                           </div>
                         </div>
 
-                        <div class="relative flex items-start">
+                        <div class="relative flex items-start p-3">
                           <div class="flex items-center h-5">
                             <input
                               id="fortnite"
@@ -428,22 +429,27 @@
                           </div>
                         </div>
 
-                        <div class="relative flex items-start">
+                        <div class="relative flex items-start p-3 bg-red-100">
                           <div class="flex items-center h-5">
                             <input
                               id="upper-week"
                               aria-describedby="upper-week-description"
                               name="plan"
                               type="radio"
+                              checked
                               class="focus:ring-orange-500 h-4 w-4 text-orange-600 border-gray-300"
                             />
                           </div>
-                          <div class="ml-3 text-sm">
+                          <div class="flex items-center space-x-2 ml-3 text-sm w-96">
                             <label
                               for="upper-week"
                               class="text-sm text-gray-700"
-                              >Upper Week</label
+                              >Upper Week
+                              </label
                             >
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                              <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
                           </div>
                         </div>
                       </div>
@@ -473,7 +479,7 @@
                     </a>
                     <div class="space-x-4">
                       <button class="border rounded-md bg-white py-2 px-3 hover:text-white shadow-md hover:bg-gray-500">Review</button>
-                      <a href="taeanswered.html"><button class="border rounded-md bg-white py-2 px-3 hover:text-white shadow-md hover:bg-gray-500">Show Answer</button></a>
+                      <a href="/src/tae.html"><button class="border rounded-md bg-white py-2 px-3 hover:text-white shadow-md hover:bg-gray-500">Show Answer</button></a>
                       <button class="border text-green-500 rounded-md bg-white py-2 px-3 hover:text-white shadow-md hover:bg-green-500">Submit</button>
                     </div>
                     <a
@@ -503,7 +509,7 @@
           <!-- Passage -->
           <div class="space-y-4 sm:px-6 lg:px-0 w-full lg:col-span-6 shadow rounded-r-md bg-white">
             <div
-              class="pt-2 rounded-tl-lg"
+              class="pt-2 rounded-tr-md"
             >
               <div class="p-3 shadow-sm sm:px-6">
                 <h2
